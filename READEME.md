@@ -5,6 +5,11 @@
 - 뷰포트는 현재 보고 있는 컴퓨터 그래픽의 영역을 나타낸다. **즉 뷰포트는 웹 페이지에서 브라우저가 화면상에 실제로 표시되는 영역** 이므로 **사용자가 볼 수 있는 시각적인 영역** 이다.
 - 같은 페이지라고 하더라도 모바일과 태블릿은 화면 크기가 다르다. 화면 크기가 다르다면 사용자가 볼 수 있는 범위가 달라지게 된다.
 
+#### Layout Viewport 와 Visutal Viewport
+* 모바일 브라우저에는 Layout Viewport 와 Visutal Viewport 2가지 뷰포트가 존재하게 된다. Layout viewport 의 경우 고정된 화면이므로 사용자의 action 에 영향을 받지 않는다. 반대로 visual viewport 의 경우는 사용자의 action, 즉 손가락으로 화면을 확대하는 등의 경우에 영향을 받아서 크기가 변하개 된다.
+
+![image](https://user-images.githubusercontent.com/41986911/116081793-a582f500-a6d5-11eb-813a-c8a912081396.png)
+
 ### 예제
 
 1. Viewport 설정하기
@@ -63,16 +68,20 @@
 
 - 사용자의 브라우저를 확대/축소 여부를 설정한다. yes 와 no 중 하나를 선택해서 적용이 가능하고 뷰포트에서 가장 접근성과 연관되어 있는 값이다. 확대와 축소는 사용성에 큰 영향을 미칩니다. 만약 뷰포트에서 지정한 크기를 볼 수 없는 문제가 발생한 경우 확대를 통해 사용성을 높일 수 있다.
 - w3.org 에서 접근성 관련 규정으로 지정되어 있다
-  - (1.4.4 텍스트 크기 조정(Level AA)): WCAG 2.0 이상을 준수하는데에 필요한 접근성이다.
-  - (1.4.10 리플 로우(Level AA))
+  - 1.4.4 텍스트 크기 조정(Level AA), 1.4.10 리플 로우(Level AA)
     - 콘텐츠의 경우 정보나 기능의 손실이 없도록 양방향으로 스크롤 되지 않도록 제공해야 한다.
     - 만약 각 줄을 읽을 때 좌우로 스크롤을 해야 한다면 혼란스럽고, 읽고 있는 내용을 이해하기 어렵게 만들 수 있다.
     - Adobe Reader 의 경우 Reflow 기능을 켜면 스크롤 바가 한 방향에만 생겨 콘텐츠를 읽기 편해진다.
     - ![image](https://user-images.githubusercontent.com/41986911/116077154-1e7f4e00-a6d0-11eb-94ae-fc61a3456024.png)
 
+6. shrink-to-fit
+- 애플의 사파리 11 버전에서 뷰토프의 크기가 보여줘야 할 내용보다 작으면 보여줘야 할 내용을 줄여서 보여준다. 다른 브라우저에서는 사용되지 않는 값이라고 한다. 크로스 브라우징이 정말 어려운 것이구나를 한 번 더 느끼게 된 속성이다.
+
 ### 호환성
 
 
-
 ### 출처
+[네이버 nuli](https://nuli.navercorp.com/community/article/1132729)
+[W3school](https://www.w3schools.com/css/css_rwd_viewport.asp)
+[MDN Viewport](https://developer.mozilla.org/en-US/docs/Web/CSS/Viewport_concepts)
 [2019 널리세미나 WCAG 2.1](https://www.slideshare.net/NULINTS/2019-wcag-21-reflow-153332260)
