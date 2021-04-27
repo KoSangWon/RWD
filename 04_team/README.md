@@ -41,8 +41,9 @@
   src="images/heropy.png"               <!-- 웹 브라우저에서 srcset, sizes 속성을 지원하지 않는 경우 -->
   alt="HEROPY" />
 ```
-####
-![image](https://user-images.githubusercontent.com/49035066/116170450-d7ca3c00-a741-11eb-8168-4985c35cc85c.png)
+#### 결과
+
+![image](https://user-images.githubusercontent.com/49035066/116170450-d7ca3c00-a741-11eb-8168-4985c35cc85c.png){width:"500"}
 
 ![image](https://user-images.githubusercontent.com/49035066/116075984-9c425a00-a6ce-11eb-9bd1-41f9c3ef36f9.png)
 
