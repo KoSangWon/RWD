@@ -19,12 +19,12 @@
 ![image](https://user-images.githubusercontent.com/49035066/116074736-1a056600-a6cd-11eb-9f0e-aee925fa9ed8.png)
 
 
-### 2.&lt;img&gt;태그의 속성(sizes, srcset)
-#### srcset
+### 2.&lt;img&gt;태그의 속성(srcset, sizes)
+- srcset
      + 사용자 에이전트가 사용할 수 있는 이미지 소스의 후보. 쉼표로 구분하는 한 개 이상의 문자열 목록입니다.
      + srcset = "이미지URL 너비서술자(w) 밀도서술자(x)" 구조로 입력합니다.
      + 밀도 서술자를 포함하지 않은 경우 기본값인 1x로 간주합니다.
-#### sizes
+- sizes
     + 속성은 쉼표(,)로 구분된 미디어조건(선택적)과 그에 따라 최적화되어 출력될 이미지 크기를 지정합니다.
     + sizes = "미디어조건 소스크기값" 구조로 입력합니다.
     + 마지막 sizes 항목에서는 미디어조건을 생략해야 합니다.
