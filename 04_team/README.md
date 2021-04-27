@@ -1,153 +1,11 @@
-# 유동형 이미지
-- 이미지의 크기가 브라우저의 창 크기에 따라 자동으로 줄어들고 늘어나거나 서로 다른 이미지파일을 제공하는 것을 뜻합니다.
-- 일반적으로 브라우저상의 이미지는 고정된 크기를 가지고 있지만, 반응형 웹 디자인에서는 이미지가 브라우저의 창 크기에 맞게 적절한 형태로 변경될 수 있도록, 창의 가로너비에 유동적으로 변하는 단위를 사용합니다.
-![image](https://user-images.githubusercontent.com/49035066/116072886-a3ffff80-a6ca-11eb-8e70-0a74fdb739d5.png)
+## 반응형 웹 디자인이란?
+다양한 화면 크기가 등장함에 따라 등장한 개념으로 서로 다른 화면 너비와 해상도 등에 맞게 웹 페이지의 레이아웃과 모습이 변경될 수 있는 사례들의 집합을 말한다.
 
-## 구현 방법
-### 1.&lt;picture&gt; 태그로 유동형 이미지 구현하기
-- <picture> 요소는 0개 이상의 <source> 요소와 하나의 <img> 요소로 구성되며, 브라우저는 <source> 요소 중에서 해당 뷰포트와 가장 잘 어울리는 <source> 요소를 다음과 같은 방법을 사용하여 선택합니다.
-- 브라우저는 <source> 요소들의 속성값을 각각 확인해 나가며 조건을 만족하는 첫 번째 <source> 요소를 사용하고, 나머지 <source> 요소들은 무시합니다. 이 때 <img> 요소는 <picture> 요소의 자식 요소 중에서 가장 마지막에 위치해야 합니다. 
-
-```HTML
-<picture>
-    <source media="(min-width: 700px)" srcset="/examples/images/people_960.jpg">  <!-- 뷰포트 너비가 700px이상인 경우  --> 
-    <source media="(min-width: 400px)" srcset="/examples/images/people_575.jpg">  <!-- 뷰포트 너비가 400px이상인 경우 -->
-    <img src="/examples/images/people_200.jpg" alt="People">                      <!-- 웹 브라우저에서 <picture>태그를 지원하지 않는 경우 -->
-</picture>
-```
-![image](https://user-images.githubusercontent.com/49035066/116074736-1a056600-a6cd-11eb-9f0e-aee925fa9ed8.png)
-
-
-### 2.&lt;img&gt;태그의 속성(srcset, sizes)으로 유동형 이미지 구현하기
-- srcset
-     + 사용자 에이전트가 사용할 수 있는 이미지 소스의 후보. 쉼표로 구분하는 한 개 이상의 문자열 목록입니다.
-     + srcset = "이미지URL 너비서술자(w) 밀도서술자(x)" 구조로 입력합니다.
-     + 밀도 서술자를 포함하지 않은 경우 기본값인 1x로 간주합니다.
-- sizes
-    + 속성은 쉼표(,)로 구분된 미디어조건(선택적)과 그에 따라 최적화되어 출력될 이미지 크기를 지정합니다.
-    + sizes = "미디어조건 소스크기값" 구조로 입력합니다.
-    + 마지막 sizes 항목에서는 미디어조건을 생략해야 합니다.
-    + 소스 크기는 의도한 이미지 표시 크기를 지정합니다. 사용자 에이전트는 현재 소스 크기를 사용해, 너비(w) 서술자를 사용한 srcset 특성의 소스 중 하나를 선택합니다.
-
-
-#### 예시
-```HTML
-<img
-  srcset="images/heropy_small.png 400w,    <!-- 뷰포트 너비가 400px 이하일 때 heropy_small.png(400px)가 사용됩니다. -->
-          images/heropy_medium.png 700w,   <!-- 뷰포트 너비가 401~700px 일 때 heropy_medium.png(700px)가 사용됩니다. -->
-          images/heropy_large.png 1000w"   <!-- 뷰포트 너비가 701~999px 일 때 heropy_large.png(1000px)가 사용됩니다. -->
-  sizes="(min-width: 1000px) 700px"     <!-- 뷰포트 너비가 1000px 이상일 때 heropy_medium.png(700px)가 사용됩니다. -->
-  src="images/heropy.png"               <!-- 웹 브라우저에서 srcset, sizes 속성을 지원하지 않는 경우 -->
-  alt="HEROPY" />
-```
-#### 결과
-
-![image](https://user-images.githubusercontent.com/49035066/116170450-d7ca3c00-a741-11eb-8168-4985c35cc85c.png)
-[참고 블로그](https://heropy.blog/2019/06/16/html-img-srcset-and-sizes/)
-
-![image](https://user-images.githubusercontent.com/49035066/116075984-9c425a00-a6ce-11eb-9bd1-41f9c3ef36f9.png)
-
----------------------------------------
-
-## 미디어 쿼리(Media Query)
-미디어 쿼리는 다양한 기기 특성과 어떤 특성이나 수치에 따라 웹 사이트, 혹은 앱을 조정할 수 있는 요소이다. 이를 이용해 반응형 웹사이트 혹은 앱을 만들 수 있다.
-  
-### 1. CSS에서의 미디어 쿼리  
-+ CSS 파일 안에서 @media나 @import같은 @규칙을 사용하여 스타일 시트의 일부를 조건부로 적용하는 방법
-
-+ @import는 CSS 엔진에게 외부 스타일 시트를 포함하도록 알린다.
-+ @media는 장치가 미디어 쿼리를 사용하여 정의된 조건의 기준을 만족하면 해당 콘텐츠를 적용하는 조건부 그룹 규칙이다.  
-
-+ 복잡한 쿼리 조합하기
-> @media only | not 미디어 유형 and |, (조건문) {적용할 css}
-
-### 예제 ex1
-아래와 같이 @media에 max-width와 min-width 미디어 기능을 사용하여 화면의 너비에 따라 배경색이 변경되도록 했다.
-```css
-@media (min-width: 801px){ 801px ~ : coral}
-```
-[Media Query 예제1](https://hyunjungc-dev.github.io/RWD_practice/media_query_ex1.html)
-
-+ 논리 연산자
-not, and, only와 같은 논리 연산자를 이용해 복잡한 쿼리를 조합할 수 있다.  
-  + and 연산자  
-    다수의 미디어 특성을 조합하여 하나의 미디어 쿼리를 만들 때 사용한다. 쿼리가 참이려면 모든 구성 특성이 참을 반환해야 한다. 미디어 유형을 같이 사용할 때도 쓰인다.
-  + not 연산자
-    미디어 쿼리를 부정하여, 쿼리가 거짓일 때만 참을 반환한다.
-    쉽표로 구분한 쿼리 목록 중 하나에서 사용한 경우, 전체 쿼리가 아닌 해당하는 하나의 쿼리에만 적용된다. not 연산자를 사용할 경우 반드시 미디어 유형도 지정해야 한다.
-  + only 연산자
-    전체 쿼리가 일치할 때만 스타일을 적용할 때 사용하며, 오래된 브라우저가 스타일을 잘못 적용하지 못하도록 방지할 때 유용하다.
-  + ,(쉼표)
-    다수의 미디어 쿼리를 하나의 규칙으로 조합할 때 사용한다. 쉼표 목록 내의 쿼리 각각은 나머지와 별개로 취급하므로, 단 하나의 쿼리만 참을 반환해도 규칙 전체가 참이 된다. 즉, 쉼표는 논리 연산자 or 처럼 동작한다.
-  
-+ 미디어 유형
-주어진 장치의 일반적인 분류를 설명한다.
-다른 유형이 특정되지 않았을 땐 all이 기본값으로 적용된다.  
-하지만 사용자가 not이나 only 연산자를 사용하면, 사용자는 반드시 미디어 유형을 특정해야한다.
-
-  + all
-    모든 장치에 적합할 때 사용한다.  
-
-  + screen
-    일반적으로 화면을 대상으로 할 때 사용한다.
-    > @media screen {...}
-
-  + print
-    프린터 장치를 대상으로 할 때 사용한다.
-    > @media print {...}
-
-  + speech
-    음성 합성장치를 대상으로 할 때 사용한다.
-
-  + print, screen
-    다수의 장치를 특정할 수도 있다.
-    > @media print, screen {...}
-
-  
-### 2. HTML에서의 미디어 쿼리  
-HTML의 &lt;style&gt; 요소, &lt;link&gt; 요소, &lt;source&gt; 요소 등의 HTML 요소의 media 속성에 값을 설정하는 방법
-  
-+ style 요소 사용  
-> &lt;style type="text/css" media=＂미디어유형 and (조건문)"&gt;
-  
-> 이때, &lt;link&gt;의 미디어 쿼리가 거짓을 반환하더라도 스타일 시트는 다운로드 된다. 하지만, 그 안의 내용은 미디어 쿼리가 참이 되어야 적용된다.
-
-### 예제 ex2
-아래와 같이 style 태그를 이용하여 max-width와 min-width 미디어 기능을 사용하여 화면의 너비에 따라 배경색이 변경되도록 했다.
-```css
-<style type="text/css" media="all and (max-width: 800px)">
-    body {
-        backgr ound-color: pink;
-    }
-</style>
-```
-[Media Query 예제2](https://hyunjungc-dev.github.io/RWD_practice/media_query_ex2.html)
-
-
-+ link 요소 사용
-> &lt;link rel="stylesheet" media="미디어유형 and (조건문)" href="조건이 참일 때 적용할 css링크주소"/&gt;
-
-### 예제 ex3
-아래와 같이 link 태그를 이용하여 max-width와 min-width 미디어 기능을 사용하여 화면의 너비에 따라 배경색이 변경되도록 했다.
-```css
-<link rel="stylesheet" media="screen and (max-width: 800px)" href="./css/media_query_ex3_600px_800px.css"/>
-```
-[Media Query 예제3](https://hyunjungc-dev.github.io/RWD_practice/media_query_ex3.html)
-
-### 3. JavaScript에서의 미디어 쿼리
-Window.matchMedia(), MediaQueryList.addListener() 메서드를 사용하여 미디어 상태를 판별하여 
-
-### 예제 ex4
-이는 html/css가 끝나고 javascript를 배운 후에, 예제 실습을 해보도록 하겠다.
-
-### 예제 ex1 ~ ex3
-600px 미만에선 background color가 cornflowerblue색이 적용되고
-![600px미만](https://github.com/HyunJungC-Dev/RWD/blob/main/04_team/assets/MQex3.PNG)
-601~800px에선 background color가 pink색이 적용되고
-![601~800px](https://github.com/HyunJungC-Dev/RWD/blob/main/04_team/assets/MQex2.PNG)
-801px 이상에선 background color가 coral색이 적용된다.
-![801px 이상](https://github.com/HyunJungC-Dev/RWD/blob/main/04_team/assets/MQex1.PNG)
-
+### 반응형 디자인을 위한 기술 
+반응형 디자인이라는 용어는 2010년 이단 마르코트가 만든 신조어로 아래의 세 가지 기술을 조합한 방법을 설명하고 있다.
+1. 유동형 그리드(Fluid Grids)
+2. 유동형 이미지(Fluid Images)
+3. 미디어 쿼리(Media Query)
 
 ## 유동형 그리드(Fluid Grid)
 ### 설명
@@ -223,3 +81,179 @@ Window.matchMedia(), MediaQueryList.addListener() 메서드를 사용하여 미�
 - 결과
 <img src="./assets/fluid-grid-2.gif" width="800">
     - 각 컨테이너의 너비가 유동적으로 화면의 크기에 따라 유동적으로 달라짐을 확인할 수 있다.
+  
+# 유동형 이미지
+- 이미지의 크기가 브라우저의 창 크기에 따라 자동으로 줄어들고 늘어나거나 서로 다른 이미지파일을 제공하는 것을 뜻합니다.
+- 일반적으로 브라우저상의 이미지는 고정된 크기를 가지고 있지만, 반응형 웹 디자인에서는 이미지가 브라우저의 창 크기에 맞게 적절한 형태로 변경될 수 있도록, 창의 가로너비에 유동적으로 변하는 단위를 사용합니다.
+![image](https://user-images.githubusercontent.com/49035066/116072886-a3ffff80-a6ca-11eb-8e70-0a74fdb739d5.png)
+
+## 구현 방법
+### 1.&lt;picture&gt; 태그로 유동형 이미지 구현하기
+- <picture> 요소는 0개 이상의 <source> 요소와 하나의 <img> 요소로 구성되며, 브라우저는 <source> 요소 중에서 해당 뷰포트와 가장 잘 어울리는 <source> 요소를 다음과 같은 방법을 사용하여 선택합니다.
+- 브라우저는 <source> 요소들의 속성값을 각각 확인해 나가며 조건을 만족하는 첫 번째 <source> 요소를 사용하고, 나머지 <source> 요소들은 무시합니다. 이 때 <img> 요소는 <picture> 요소의 자식 요소 중에서 가장 마지막에 위치해야 합니다. 
+
+```HTML
+<picture>
+    <source media="(min-width: 700px)" srcset="/examples/images/people_960.jpg">  <!-- 뷰포트 너비가 700px이상인 경우  --> 
+    <source media="(min-width: 400px)" srcset="/examples/images/people_575.jpg">  <!-- 뷰포트 너비가 400px이상인 경우 -->
+    <img src="/examples/images/people_200.jpg" alt="People">                      <!-- 웹 브라우저에서 <picture>태그를 지원하지 않는 경우 -->
+</picture>
+```
+![image](https://user-images.githubusercontent.com/49035066/116074736-1a056600-a6cd-11eb-9f0e-aee925fa9ed8.png)
+
+
+### 2.&lt;img&gt;태그의 속성(srcset, sizes)으로 유동형 이미지 구현하기
+- srcset
+     + 사용자 에이전트가 사용할 수 있는 이미지 소스의 후보. 쉼표로 구분하는 한 개 이상의 문자열 목록입니다.
+     + srcset = "이미지URL 너비서술자(w) 밀도서술자(x)" 구조로 입력합니다.
+     + 밀도 서술자를 포함하지 않은 경우 기본값인 1x로 간주합니다.
+- sizes
+    + 속성은 쉼표(,)로 구분된 미디어조건(선택적)과 그에 따라 최적화되어 출력될 이미지 크기를 지정합니다.
+    + sizes = "미디어조건 소스크기값" 구조로 입력합니다.
+    + 마지막 sizes 항목에서는 미디어조건을 생략해야 합니다.
+    + 소스 크기는 의도한 이미지 표시 크기를 지정합니다. 사용자 에이전트는 현재 소스 크기를 사용해, 너비(w) 서술자를 사용한 srcset 특성의 소스 중 하나를 선택합니다.
+
+
+#### 예시
+```HTML
+<img
+  srcset="images/heropy_small.png 400w,    <!-- 뷰포트 너비가 400px 이하일 때 heropy_small.png(400px)가 사용됩니다. -->
+          images/heropy_medium.png 700w,   <!-- 뷰포트 너비가 401~700px 일 때 heropy_medium.png(700px)가 사용됩니다. -->
+          images/heropy_large.png 1000w"   <!-- 뷰포트 너비가 701~999px 일 때 heropy_large.png(1000px)가 사용됩니다. -->
+  sizes="(min-width: 1000px) 700px"     <!-- 뷰포트 너비가 1000px 이상일 때 heropy_medium.png(700px)가 사용됩니다. -->
+  src="images/heropy.png"               <!-- 웹 브라우저에서 srcset, sizes 속성을 지원하지 않는 경우 -->
+  alt="HEROPY" />
+```
+#### 결과
+
+![image](https://user-images.githubusercontent.com/49035066/116170450-d7ca3c00-a741-11eb-8168-4985c35cc85c.png)
+[사진 출처](https://heropy.blog/2019/06/16/html-img-srcset-and-sizes/)
+
+![image](https://user-images.githubusercontent.com/49035066/116075984-9c425a00-a6ce-11eb-9bd1-41f9c3ef36f9.png)
+
+## 미디어 쿼리(Media Query)
+### 설명
+- 미디어 쿼리는 다양한 기기 특성과 어떤 특성이나 수치에 따라 웹 사이트, 혹은 앱을 조정할 수 있는 요소이다. 
+- 이를 이용해 반응형 웹사이트 혹은 앱을 만들 수 있다.
+  
+### 1. CSS에서의 미디어 쿼리 
+- CSS 파일 안에서 @media나 @import같은 @규칙을 사용하여 스타일 시트의 일부를 조건부로 적용하는 방법
+- @import는 CSS 엔진에게 외부 스타일 시트를 포함하도록 알린다.
+- @media는 장치가 미디어 쿼리를 사용하여 정의된 조건의 기준을 만족하면 해당 콘텐츠를 적용하는 조건부 그룹 규칙이다.  
+
+#### @media와 복잡한 쿼리 조합하기
+> @media only | not 미디어 유형 and |, (조건문) {적용할 css}
+
+#### @import와 복잡한 쿼리 조합하기
+> @import  url("적용할 css file 경로") 미디어 유형 and (조건문)
+
+### 예제 ex1
+아래와 같이 @media에 max-width와 min-width 미디어 기능을 사용하여 화면의 너비에 따라 배경색이 변경되도록 했다.
+```css
+@media (min-width: 801px){ 801px ~ : coral}
+```
+[Media Query 예제1](https://hyunjungc-dev.github.io/RWD_practice/media_query_ex1.html)
+
++ 뷰포트와 관련된 조건문
+  + width
+    스크롤바를 포함한 뷰포트의 너비
+  + heigh
+    뷰포트의 높이
+  + orientation
+    뷰포트의 방향
+  + aspect-ratio
+    뷰포트의 가로세로비
+  + overflow-block
+    콘텐츠가 블록 축 방향으로 뷰포트를 오버플로 할 경우 출력 장치가 어떻게 처리하는가?
+  + overflow-inline
+    콘텐츠가 인라인 축 방향으로 뷰포트를 오버플로 할 경우 스크롤 가능한가?
+    
++ 그 외 조건문
+  + any-hover, any-pointer, color, grid 등
+
++ 논리 연산자
+not, and, only와 같은 논리 연산자를 이용해 복잡한 쿼리를 조합할 수 있다.  
+  + and 연산자  
+    다수의 미디어 특성을 조합하여 하나의 미디어 쿼리를 만들 때 사용한다. 쿼리가 참이려면 모든 구성 특성이 참을 반환해야 한다. 미디어 유형을 같이 사용할 때도 쓰인다.
+  + not 연산자  
+    미디어 쿼리를 부정하여, 쿼리가 거짓일 때만 참을 반환한다.
+    쉽표로 구분한 쿼리 목록 중 하나에서 사용한 경우, 전체 쿼리가 아닌 해당하는 하나의 쿼리에만 적용된다. not 연산자를 사용할 경우 반드시 미디어 유형도 지정해야 한다.
+  + only 연산자  
+    전체 쿼리가 일치할 때만 스타일을 적용할 때 사용하며, 오래된 브라우저가 스타일을 잘못 적용하지 못하도록 방지할 때 유용하다.
+  + ,(쉼표)  
+    다수의 미디어 쿼리를 하나의 규칙으로 조합할 때 사용한다. 쉼표 목록 내의 쿼리 각각은 나머지와 별개로 취급하므로, 단 하나의 쿼리만 참을 반환해도 규칙 전체가 참이 된다. 즉, 쉼표는 논리 연산자 or 처럼 동작한다.
+  
++ 미디어 유형  
+주어진 장치의 일반적인 분류를 설명한다.
+다른 유형이 특정되지 않았을 땐 all이 기본값으로 적용된다.  
+하지만 사용자가 not이나 only 연산자를 사용하면, 사용자는 반드시 미디어 유형을 특정해야한다.
+
+  + all  
+    모든 장치에 적합할 때 사용한다.  
+
+  + screen  
+    일반적으로 화면을 대상으로 할 때 사용한다.
+    > @media screen {...}
+
+  + print  
+    프린터 장치를 대상으로 할 때 사용한다.
+    > @media print {...}
+
+  + speech  
+    음성 합성장치를 대상으로 할 때 사용한다.
+
+  + print, screen   
+    다수의 장치를 특정할 수도 있다.
+    > @media print, screen {...}
+
+  
+### 2. HTML에서의 미디어 쿼리  
+HTML의 &lt;style&gt; 요소, &lt;link&gt; 요소, &lt;source&gt; 요소 등의 HTML 요소의 media 속성에 값을 설정하는 방법
+  
+#### style 요소 사용  
+> &lt;style type="text/css" media=＂미디어유형 and (조건문)"&gt;
+  
+이때, &lt;link&gt;의 미디어 쿼리가 거짓을 반환하더라도 스타일 시트는 다운로드 된다. 하지만, 그 안의 내용은 미디어 쿼리가 참이 되어야 적용된다.
+
+### 예제 ex2
+아래와 같이 style 태그를 이용하여 max-width와 min-width 미디어 기능을 사용하여 화면의 너비에 따라 배경색이 변경되도록 했다.
+```css
+<style type="text/css" media="all and (max-width: 800px)">
+    body {
+        backgr ound-color: pink;
+    }
+</style>
+```
+[Media Query 예제2](https://hyunjungc-dev.github.io/RWD_practice/media_query_ex2.html)
+
+
+#### link 요소 사용
+> &lt;link rel="stylesheet" media="미디어유형 and (조건문)" href="조건이 참일 때 적용할 css링크주소"/&gt;
+
+### 예제 ex3
+아래와 같이 link 태그를 이용하여 max-width와 min-width 미디어 기능을 사용하여 화면의 너비에 따라 배경색이 변경되도록 했다.
+```css
+<link rel="stylesheet" media="screen and (max-width: 800px)" href="./css/media_query_ex3_600px_800px.css"/>
+```
+[Media Query 예제3](https://hyunjungc-dev.github.io/RWD_practice/media_query_ex3.html)
+
+### 3. JavaScript에서의 미디어 쿼리
+Window.matchMedia(), MediaQueryList.addListener() 메서드를 사용하여 미디어 상태를 판별하는 방법
+
+### 예제 ex4
+이는 html/css가 끝나고 javascript를 배운 후에, 예제 실습을 해보도록 하겠다.
+
+### 예제 ex1 ~ ex3
+600px 미만에선 background color가 cornflowerblue색이 적용되고
+![600px미만](https://github.com/HyunJungC-Dev/RWD/blob/main/04_team/assets/MQex3.PNG)
+601~800px에선 background color가 pink색이 적용되고
+![601~800px](https://github.com/HyunJungC-Dev/RWD/blob/main/04_team/assets/MQex2.PNG)
+801px 이상에선 background color가 coral색이 적용된다.
+![801px 이상](https://github.com/HyunJungC-Dev/RWD/blob/main/04_team/assets/MQex1.PNG)
+
+
+## 참고자료
++ [MDN 반응형 디자인](https://developer.mozilla.org/ko/docs/Learn/CSS/CSS_layout/Responsive_Design)
++ [MDN 미디어 쿼리](https://developer.mozilla.org/ko/docs/Web/CSS/Media_Queries)
++ [MDN 미디어 쿼리 사용하기](https://developer.mozilla.org/ko/docs/Web/CSS/Media_Queries/Using_media_queries)
++ [MDN @-규칙](https://developer.mozilla.org/ko/docs/Web/CSS/At-rule)
