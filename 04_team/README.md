@@ -91,10 +91,10 @@ Window.matchMedia(), MediaQueryList.addListener() 메서드를 사용하여 미�
 
 ### 예제 ex1 ~ ex3
 600px 미만에선 background color가 cornflowerblue색이 적용되고
-601~800px에선 background color가 pink색이 적용되고
-801px 이상에선 background color가 coral색이 적용된다.
 ![600px미만](https://github.com/HyunJungC-Dev/RWD/blob/main/04_team/assets/MQex3.PNG)
+601~800px에선 background color가 pink색이 적용되고
 ![601~800px](https://github.com/HyunJungC-Dev/RWD/blob/main/04_team/assets/MQex2.PNG)
+801px 이상에선 background color가 coral색이 적용된다.
 ![801px 이상](https://github.com/HyunJungC-Dev/RWD/blob/main/04_team/assets/MQex1.PNG)
 
 
