@@ -4,7 +4,7 @@
 ![image](https://user-images.githubusercontent.com/49035066/116072886-a3ffff80-a6ca-11eb-8e70-0a74fdb739d5.png)
 
 ## 구현 방법
-### 1.&lt;picture&gt; 태그
+### 1.&lt;picture&gt; 태그로 유동형 이미지 구현하기
 - <picture> 요소는 0개 이상의 <source> 요소와 하나의 <img> 요소로 구성되며, 브라우저는 <source> 요소 중에서 해당 뷰포트와 가장 잘 어울리는 <source> 요소를 다음과 같은 방법을 사용하여 선택합니다.
 - 브라우저는 <source> 요소들의 속성값을 각각 확인해 나가며 조건을 만족하는 첫 번째 <source> 요소를 사용하고, 나머지 <source> 요소들은 무시합니다. 이 때 <img> 요소는 <picture> 요소의 자식 요소 중에서 가장 마지막에 위치해야 합니다. 
 
@@ -18,7 +18,7 @@
 ![image](https://user-images.githubusercontent.com/49035066/116074736-1a056600-a6cd-11eb-9f0e-aee925fa9ed8.png)
 
 
-### 2.&lt;img&gt;태그의 속성(srcset, sizes)
+### 2.&lt;img&gt;태그의 속성(srcset, sizes)으로 유동형 이미지 
 - srcset
      + 사용자 에이전트가 사용할 수 있는 이미지 소스의 후보. 쉼표로 구분하는 한 개 이상의 문자열 목록입니다.
      + srcset = "이미지URL 너비서술자(w) 밀도서술자(x)" 구조로 입력합니다.
