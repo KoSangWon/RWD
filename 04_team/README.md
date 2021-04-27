@@ -8,7 +8,6 @@
 - <picture> 요소는 0개 이상의 <source> 요소와 하나의 <img> 요소로 구성되며, 브라우저는 <source> 요소 중에서 해당 뷰포트와 가장 잘 어울리는 <source> 요소를 다음과 같은 방법을 사용하여 선택합니다.
 - 브라우저는 <source> 요소들의 속성값을 각각 확인해 나가며 조건을 만족하는 첫 번째 <source> 요소를 사용하고, 나머지 <source> 요소들은 무시합니다. 이 때 <img> 요소는 <picture> 요소의 자식 요소 중에서 가장 마지막에 위치해야 합니다. 
 
-
 ```HTML
 <picture>
     <source media="(min-width: 700px)" srcset="/examples/images/people_960.jpg">  <!-- 뷰포트 너비가 700px이상인 경우  --> 
