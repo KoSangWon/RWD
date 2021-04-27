@@ -1,3 +1,46 @@
+# 1. 유동형 이미지
+- 이미지의 크기가 브라우저의 창 크기에 따라 자동으로 줄어들고 늘어나는 것을 의미합니다.
+- 일반적으로 브라우저상의 이미지는 고정된 크기를 가지고 있지만, 반응형 웹 디자인에서는 이미지가 브라우저의 창 크기에 맞게 적절한 형태로 변경될 수 있도록, 창의 가로너비에 유동적으로 변하는 단위를 사용합니다.
+![image](https://user-images.githubusercontent.com/49035066/116072886-a3ffff80-a6ca-11eb-8e70-0a74fdb739d5.png)
+
+## 구현 방법
+### 1-1.&lt;picture&gt; 태그
+- <picture> 요소는 0개 이상의 <source> 요소와 하나의 <img> 요소로 구성되며, 브라우저는 <source> 요소 중에서 해당 뷰포트와 가장 잘 어울리는 <source> 요소를 다음과 같은 방법을 사용하여 선택합니다.
+- 브라우저는 <source> 요소들의 속성값을 각각 확인해 나가며 조건을 만족하는 첫 번째 <source> 요소를 사용하고, 나머지 <source> 요소들은 무시합니다. 이 때 <img> 요소는 <picture> 요소의 자식 요소 중에서 가장 마지막에 위치해야 합니다. 
+
+
+```HTML
+<picture>
+    <source media="(min-width: 700px)" srcset="/examples/images/people_960.jpg">  <!-- 뷰포트 너비가 700px이상인 경우  --> 
+    <source media="(min-width: 400px)" srcset="/examples/images/people_575.jpg">  <!-- 뷰포트 너비가 400px이상인 경우 -->
+    <img src="/examples/images/people_200.jpg" alt="People">                      <!-- 웹 브라우저에서 <picture>태그를 지원하지 않는 경우 -->
+</picture>
+```
+![image](https://user-images.githubusercontent.com/49035066/116074736-1a056600-a6cd-11eb-9f0e-aee925fa9ed8.png)
+
+
+### 1-2.&lt;img&gt;태그의 속성(sizes, srcset, media )
+- srcset(1) : 사용자 에이전트가 사용할 수 있는 이미지 소스의 후보. 쉼표로 구분하는 한 개 이상의 문자열 목록입니다.
+- srcset(2) : srcset = "이미지URL 너비서술자(w) 밀도서술자(x)"
+- srcset(3) : 밀도 서술자를 포함하지 않은 경우 기본값인 1x로 간주합니다.
+- sizes(1) : 속성은 쉼표(,)로 구분된 미디어조건(선택적)과 그에 따라 최적화되어 출력될 이미지 크기를 지정합니다.
+- sizes(2) : sizes = "미디어조건 소스크기값"
+- sizes(3) : 마지막 sizes 항목에서는 미디어조건을 생략해야 합니다.
+- sizes(4) : 소스 크기는 의도한 이미지 표시 크기를 지정합니다. 사용자 에이전트는 현재 소스 크기를 사용해, 너비(w) 서술자를 사용한 srcset 특성의 소스 중 하나를 선택합니다.
+
+```HTML
+<img
+  srcset="images/heropy_small.png 400w,    <!-- 뷰포트 너비가 400px 이하일 때 heropy_small.png(400px)가 사용됩니다. -->
+          images/heropy_medium.png 700w,   <!-- 뷰포트 너비가 401~700px 일 때 heropy_medium.png(700px)가 사용됩니다. -->
+          images/heropy_large.png 1000w"   <!-- 뷰포트 너비가 701~999px 일 때 heropy_large.png(1000px)가 사용됩니다. -->
+  sizes="(min-width: 1000px) 700px"     <!-- 뷰포트 너비가 1000px 이상일 때 heropy_medium.png(700px)가 사용됩니다. -->
+  src="images/heropy.png"               <!-- 웹 브라우저에서 srcset, sizes 속성을 지원하지 않는 경우 -->
+  alt="HEROPY" />
+```
+
+![image](https://user-images.githubusercontent.com/49035066/116075984-9c425a00-a6ce-11eb-9bd1-41f9c3ef36f9.png)
+
+
 ## 미디어 쿼리(Media Query)
 미디어 쿼리는 다양한 기기 특성과 어떤 특성이나 수치에 따라 웹 사이트, 혹은 앱을 조정할 수 있는 요소이다. 이를 이용해 반응형 웹사이트 혹은 앱을 만들 수 있다.
   
