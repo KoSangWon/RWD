@@ -16,7 +16,8 @@ ex1. 아래와 같이 @media에 max-width와 min-width 미디어 기능을 사�
 ```css
 @media (min-width: 801px){ 801px ~ : coral}
 ```
-  
+[Media Query 예제1](https://hyunjungc-dev.github.io/RWD_practice/media_query_ex1.html)
+
 논리 연산자
 not, and, only와 같은 논리 연산자를 이용해 복잡한 쿼리를 조합할 수 있다.  
 + and 연산자  
@@ -70,7 +71,10 @@ ex2. 아래와 같이 style 태그를 이용하여 max-width와 min-width 미디
     }
 </style>
 ```
+[Media Query 예제2](https://hyunjungc-dev.github.io/RWD_practice/media_query_ex2.html)
 
+
++ link 요소 사용
 > &lt;link rel="stylesheet" media="미디어유형 and (조건문)" href="조건이 참일 때 적용할 css링크주소"/&gt;
 
 ### 예제
@@ -78,6 +82,7 @@ ex3. 아래와 같이 link 태그를 이용하여 max-width와 min-width 미디�
 ```css
 <link rel="stylesheet" media="screen and (max-width: 800px)" href="./css/media_query_ex3_600px_800px.css"/>
 ```
+[Media Query 예제3](https://hyunjungc-dev.github.io/RWD_practice/media_query_ex3.html)
 
 ### 3. JavaScript에서의 미디어 쿼리
 Window.matchMedia(), MediaQueryList.addListener() 메서드를 사용하여 미디어 상태를 판별하여 
