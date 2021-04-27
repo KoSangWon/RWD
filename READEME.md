@@ -100,6 +100,7 @@
 3. font 에 적용하기
 * 위 속성을 통해 viewport 의 너비와 높이의 % 만큼의 크기를 지정할 수 있다. 사실 너비와 높이는 block 요소에서 가질 수 있기 때문에 inline 요소에서 사용하려면 따로 display 의 변환이 필요하지 않을까? 라는 생각이 들었다. 하지만 정말 간단하게도 font-size 에 속성을 기입해주는 것 만으로도 똑같이 사용할 수 있었다.
 
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/41986911/116174038-9c7f3b80-a748-11eb-943c-7898a1b6d420.gif)
 
 
 
