@@ -79,11 +79,33 @@
 - 애플의 사파리 11 버전에서 뷰토프의 크기가 보여줘야 할 내용보다 작으면 보여줘야 할 내용을 줄여서 보여준다. 다른 브라우저에서는 사용되지 않는 값이라고 한다. 크로스 브라우징이 정말 어려운 것이구나를 한 번 더 느끼게 된 속성이다.
 
 ##### CSS
-### 호환성
+> CSS 에서는 vw, vh, vmin, vmax 의 4가지 속성을 사용할 수 있다. 이 속성들을 통해 viewport 가 변할때마다 자동으로 너비나 높이들이 재계산되는 장점이 있다. 대 부분의 브라우저에서 지원하지만 역시 IE 에서만 vmax 속성을 지원하지 않아 일부 지원 표시로 되어있다.
+
+
+![image](https://user-images.githubusercontent.com/41986911/116171381-9c307180-a743-11eb-897b-36e1812279c4.png)
+
+
+1. vw 와 vh
+* vw 는 viewport width 로 viewport 의 너비를 기준으로 설정된다. 1vw 는 viewport 너비의 1%이다. 즉 앞의 숫자는 전체 viewport 의 % 단위로 적용된다. vw는 너비를 기준으로 한다면, vh 는 viewport height 로 viewport 의 높이를 기준으로 한다. 마찬가지로 1vh 는 viewport 높이의 1% 이다.
+
+
+![화면 기록 2021-04-27 오전 10 18 11](https://user-images.githubusercontent.com/41986911/116171100-18768500-a743-11eb-8321-19820932f7d7.gif)
+
+
+2. vmin 과 vmax
+* vmin 은 너비와 높이 중에 더 작은 값을 기준으로 계산된다. 반대로 vmax 는 너비와 높이 중 더 큰 값을 기준으로 계산 된다. 만약 브라우저의 너비가 960px 라면 1vmin 은 9.6px (960/100) 이고 높이가 1200px 라면 1vmax 는 12px (1200/100) 으로 계산 된다.
+
+![화면 기록 2021-04-27 오전 10 44 07](https://user-images.githubusercontent.com/41986911/116173238-2d551780-a747-11eb-8309-bf7793581da2.gif)
+
+3. font 에 적용하기
+* 위 속성을 통해 viewport 의 너비와 높이의 % 만큼의 크기를 지정할 수 있다. 사실 너비와 높이는 block 요소에서 가질 수 있기 때문에 inline 요소에서 사용하려면 따로 display 의 변환이 필요하지 않을까? 라는 생각이 들었다. 하지만 정말 간단하게도 font-size 에 속성을 기입해주는 것 만으로도 똑같이 사용할 수 있었다.
+
+
+
 
 
 ### 출처
-[네이버 nuli](https://nuli.navercorp.com/community/article/1132729)
-[W3school](https://www.w3schools.com/css/css_rwd_viewport.asp)
-[MDN Viewport](https://developer.mozilla.org/en-US/docs/Web/CSS/Viewport_concepts)
-[2019 널리세미나 WCAG 2.1](https://www.slideshare.net/NULINTS/2019-wcag-21-reflow-153332260)
+[네이버 nuli 뷰포트 정리](https://nuli.navercorp.com/community/article/1132729)  
+[W3school viewport](https://www.w3schools.com/css/css_rwd_viewport.asp)  
+[MDN Viewport](https://developer.mozilla.org/en-US/docs/Web/CSS/Viewport_concepts)  
+[2019 널리세미나 WCAG 2.1 reflow 에 대하여](https://www.slideshare.net/NULINTS/2019-wcag-21-reflow-153332260)  
