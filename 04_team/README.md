@@ -43,8 +43,8 @@
 ```
 #### 결과
 
-![image](https://user-images.githubusercontent.com/49035066/116170450-d7ca3c00-a741-11eb-8168-4985c35cc85c.png){: width="700"}
-[참고](https://heropy.blog/2019/06/16/html-img-srcset-and-sizes/)
+![image](https://user-images.githubusercontent.com/49035066/116170450-d7ca3c00-a741-11eb-8168-4985c35cc85c.png)
+[참고 블로그](https://heropy.blog/2019/06/16/html-img-srcset-and-sizes/)
 
 ![image](https://user-images.githubusercontent.com/49035066/116075984-9c425a00-a6ce-11eb-9bd1-41f9c3ef36f9.png)
 
